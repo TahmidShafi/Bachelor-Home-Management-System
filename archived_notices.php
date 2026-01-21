@@ -17,7 +17,7 @@ include 'config.php';
     <link rel="stylesheet" href="style.css">
     <style>
         .archive-container {
-            width: 80%;
+            width: 79%;
             margin: 50px auto;
             background: white;
             padding: 30px;
@@ -48,10 +48,9 @@ include 'config.php';
 </head>
 
 <body>
-
     <div class="archive-container">
         <a href="javascript:history.back()" class="back-link">&larr; Back to Dashboard</a>
-        <h2>🗄️ Archived Notices</h2>
+        <h2>Archived Notices</h2> 
         <p style="color:#666; margin-bottom: 30px;">Notices older than 24 hours.</p>
 
         <?php

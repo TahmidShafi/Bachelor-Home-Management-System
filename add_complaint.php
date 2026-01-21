@@ -6,10 +6,10 @@ if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'resident' && $_SESSION[
     echo json_encode(["status" => "error", "message" => "Unauthorized Access"]);
     exit();
 }
-
+//
 error_reporting(0);
 header('Content-Type: application/json');
-
+//set json response
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 

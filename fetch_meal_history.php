@@ -2,7 +2,6 @@
 session_start();
 include 'config.php';
 
-// 1. Security Check
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'supervisor') {
     echo json_encode(["status" => "error", "message" => "Unauthorized Access"]);
     exit();
@@ -10,7 +9,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'supervisor') {
 
 header('Content-Type: application/json');
 
-// 2. Get Target User
 $target_user = isset($_GET['user']) ? $conn->real_escape_string($_GET['user']) : '';
 
 if (empty($target_user)) {
@@ -18,7 +16,7 @@ if (empty($target_user)) {
     exit();
 }
 
-// 3. Fetch Data
+// fetch data
 $sql = "SELECT * FROM meals WHERE resident_name = '$target_user' ORDER BY date DESC LIMIT 30";
 $result = $conn->query($sql);
 

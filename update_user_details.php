@@ -4,7 +4,7 @@
 session_start();
 include 'config.php';
 
-// Security Check: Only Admin can access this
+// only admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     echo json_encode(["status" => "error", "message" => "Unauthorized Access"]);
     exit();
@@ -17,7 +17,7 @@ $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
 $id = isset($data['id']) ? $conn->real_escape_string($data['id']) : '';
-// Sanitization: Essential to prevent SQL Injection
+// sql injection sanitize.
 $phone = isset($data['phone']) ? $conn->real_escape_string($data['phone']) : '';
 $emergency_contact = isset($data['emergency_contact']) ? $conn->real_escape_string($data['emergency_contact']) : '';
 $nid = isset($data['nid']) ? $conn->real_escape_string($data['nid']) : '';

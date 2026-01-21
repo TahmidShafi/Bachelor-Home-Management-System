@@ -1,10 +1,9 @@
 <?php
-// setup_archive_tables.php
 include 'config.php';
 
 echo "Setting up Archive Tables...<br>";
 
-// 1. Archived Expenses
+//archiving all
 $sql_exp = "CREATE TABLE IF NOT EXISTS archived_expenses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     original_id INT,
@@ -12,7 +11,7 @@ $sql_exp = "CREATE TABLE IF NOT EXISTS archived_expenses (
     amount DECIMAL(10,2),
     category VARCHAR(50),
     date DATE,
-    resident_name VARCHAR(100), -- In case needed
+    resident_name VARCHAR(100), 
     archived_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     archive_label VARCHAR(100)
 )";
@@ -21,7 +20,6 @@ if ($conn->query($sql_exp) === TRUE)
 else
     echo "Error expenses: " . $conn->error . "<br>";
 
-// 2. Archived Deposits
 $sql_dep = "CREATE TABLE IF NOT EXISTS archived_deposits (
     id INT AUTO_INCREMENT PRIMARY KEY,
     original_id INT,
@@ -36,7 +34,6 @@ if ($conn->query($sql_dep) === TRUE)
 else
     echo "Error deposits: " . $conn->error . "<br>";
 
-// 3. Archived Meals
 $sql_meals = "CREATE TABLE IF NOT EXISTS archived_meals (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE,

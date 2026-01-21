@@ -1,10 +1,10 @@
 <?php
-// setup_trash_tables.php
+
 include 'config.php';
 
 echo "Setting up Trash Tables...<br>";
 
-// 1. Trash Expenses
+//trash all
 $sql_exp = "CREATE TABLE IF NOT EXISTS trash_expenses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     original_id INT,
@@ -19,7 +19,7 @@ if ($conn->query($sql_exp) === TRUE)
 else
     echo "Error expenses: " . $conn->error . "<br>";
 
-// 2. Trash Deposits
+
 $sql_dep = "CREATE TABLE IF NOT EXISTS trash_deposits (
     id INT AUTO_INCREMENT PRIMARY KEY,
     original_id INT,
@@ -33,7 +33,6 @@ if ($conn->query($sql_dep) === TRUE)
 else
     echo "Error deposits: " . $conn->error . "<br>";
 
-// 3. Trash Meals
 $sql_meals = "CREATE TABLE IF NOT EXISTS trash_meals (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE,

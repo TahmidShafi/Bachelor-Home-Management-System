@@ -2,12 +2,12 @@
 
 session_start();
 
-// Prevent caching to ensure logout works effectively on back button
+//caching logout works
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
-// 1. Check if user is Resident
+//Check if user is resident
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'resident') {
     header("Location: index.php");
     exit();

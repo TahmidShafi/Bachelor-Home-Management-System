@@ -4,14 +4,14 @@
 session_start();
 include 'config.php';
 
-// Security Check: Only Admin can access this
+// only for admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     echo json_encode(["status" => "error", "message" => "Unauthorized Access"]);
     exit();
 }
 
 error_reporting(0);
-ini_set('display_errors', 0); // Hide PHP warnings to keep JSON clean
+ini_set('display_errors', 0);
 header('Content-Type: application/json');
 
 $json = file_get_contents('php://input');
@@ -20,7 +20,6 @@ $data = json_decode($json, true);
 $user_id = isset($data['user_id']) ? $conn->real_escape_string($data['user_id']) : '';
 $new_role = isset($data['new_role']) ? $conn->real_escape_string($data['new_role']) : '';
 
-// Prevent assigning "Admin" role via this simple panel to avoid accidental takeovers or security risks.
 if ($new_role === 'admin') {
     echo json_encode(["status" => "error", "message" => "Cannot assign Admin role via this panel."]);
     exit();
